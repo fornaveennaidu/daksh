@@ -1,0 +1,120 @@
+<?php
+/**
+ * Daksh Platform - Premium Floating Header Component
+ * Location: resources/templates/header.php
+ * Architecture: Clean Typography Branding, Refined Dropdowns, Mobile Overlay Redesign
+ */
+?>
+
+<div class="daksh-offer-bar" role="banner">
+    30 Minute Service Available Across Bangalore
+</div>
+
+<header class="daksh-main-header">
+    <nav class="nav-pill" aria-label="Main navigation">
+        
+        <a href="index.php" class="daksh-brand" aria-label="Go to Daksh Home Page" title="Go to Daksh Home Page">
+            <span class="brand-name">DAKSH</span>
+            <span class="brand-tagline">Home Appliance Services</span>
+        </a>
+
+        <div class="nav-right" id="nav-right-container">
+            <div class="mobile-nav-wrapper">
+                <ul class="nav-menu">
+                    
+                    <li class="nav-item services-menu">
+                        <button class="nav-link" aria-haspopup="true" aria-expanded="false">
+                            Services
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                        </button>
+                        <div class="dropdown-content" role="menu">
+                            <a href="/services/ac-repair" class="dropdown-item" role="menuitem">AC Repair</a>
+                            <a href="/services/washing-machine-repair" class="dropdown-item" role="menuitem">Washing Machine Repair</a>
+                            <a href="/services/refrigerator-repair" class="dropdown-item" role="menuitem">Refrigerator Repair</a>
+                            <a href="/services/geyser-repair" class="dropdown-item" role="menuitem">Geyser Repair</a>
+                            <a href="/services/ro-service" class="dropdown-item" role="menuitem">RO Service</a>
+                        </div>
+                    </li>
+
+                    <li class="nav-item company-menu">
+                        <button class="nav-link" aria-haspopup="true" aria-expanded="false">
+                            My Company
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                        </button>
+                        <div class="dropdown-content" role="menu">
+                            <a href="/about" class="dropdown-item" role="menuitem">About Us</a>
+                            <a href="/team" class="dropdown-item" role="menuitem">Our Team</a>
+                            <a href="/careers" class="dropdown-item" role="menuitem">Careers / Join Us</a>
+                            <a href="/contact" class="dropdown-item" role="menuitem">Contact Us</a>
+                        </div>
+                    </li>
+                </ul>
+
+                <a href="/register" class="btn-signup">
+                    Sign Up
+                </a>
+            </div>
+        </div>
+
+        <button class="mobile-toggle" aria-controls="nav-right-container" aria-expanded="false" aria-label="Toggle navigation menu">
+            <span class="hamburger"></span>
+        </button>
+
+    </nav>
+</header>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const mobileToggle = document.querySelector('.mobile-toggle');
+    const navRight = document.getElementById('nav-right-container');
+    const navItems = document.querySelectorAll('.nav-item');
+
+    // Hamburger Menu Toggle
+    if(mobileToggle && navRight) {
+        mobileToggle.addEventListener('click', () => {
+            const isExpanded = mobileToggle.getAttribute('aria-expanded') === 'true';
+            mobileToggle.setAttribute('aria-expanded', !isExpanded);
+            navRight.classList.toggle('active');
+            
+            // Hamburger Micro-interaction
+            const lines = mobileToggle.querySelector('.hamburger');
+            if(!isExpanded) {
+                // Menu is opening
+                lines.style.background = 'transparent';
+                lines.style.setProperty('--pseudo-transform-before', 'rotate(45deg) translate(5px, 5px)');
+                lines.style.setProperty('--pseudo-transform-after', 'rotate(-45deg) translate(7px, -7px)');
+            } else {
+                // Menu is closing (MENU CLOSE RULE Enforced)
+                lines.style.background = 'var(--nav-text)';
+                lines.style.removeProperty('--pseudo-transform-before');
+                lines.style.removeProperty('--pseudo-transform-after');
+                
+                // Reset all active mobile tabs so nothing remains visible on next open
+                setTimeout(() => {
+                    navItems.forEach(item => item.classList.remove('active-mobile'));
+                }, 300); // Wait for the menu fade-out transition to finish
+            }
+        });
+    }
+
+    // Mobile Accordion Logic
+    navItems.forEach(item => {
+        const link = item.querySelector('.nav-link');
+        if(link) {
+            link.addEventListener('click', (e) => {
+                if(window.innerWidth <= 768) {
+                    e.preventDefault(); // Prevent top-jump on empty anchors
+                    
+                    // Close other open menus
+                    navItems.forEach(otherItem => {
+                        if(otherItem !== item) otherItem.classList.remove('active-mobile');
+                    });
+                    
+                    // Toggle the clicked menu
+                    item.classList.toggle('active-mobile');
+                }
+            });
+        }
+    });
+});
+</script>
