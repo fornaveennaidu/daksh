@@ -1,0 +1,70 @@
+<?php
+/**
+ * Daksh Platform - Global Homepage
+ * Location: public/index.php
+ * Architecture: Root entry point connecting core view components.
+ */
+
+// 1. Define core directory separators securely (with collision protection)
+if (!defined('DS')) {
+    define('DS', DIRECTORY_SEPARATOR);
+}
+if (!defined('BASE_PATH')) {
+    define('BASE_PATH', dirname(__DIR__));
+}
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <title>Daksh - Home Appliance Services</title>
+    <meta name="description" content="Daksh Enterprise Home Appliance Service Platform">
+    
+    <link rel="icon" type="image/png" href="assets/icons/favicon/favicon.png">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="assets/css/header.css">
+    <link rel="stylesheet" href="assets/css/home.css">
+</head>
+<body>
+
+    <?php 
+    $headerPath = BASE_PATH . DS . 'resources' . DS . 'templates' . DS . 'header.php';
+
+    if (file_exists($headerPath)) {
+        require_once $headerPath; 
+    } else {
+        echo '<div style="background:#FFF3E0; color:#FF8C00; padding:16px; border-left: 4px solid #FF8C00; font-family: \'Poppins\', sans-serif; font-size: 14px; text-align: center; margin-bottom: 20px;">';
+        echo '<strong>Architectural Notice:</strong> The header component is missing. Please ensure you have created the file at <code>Daksh/resources/templates/header.php</code>.';
+        echo '</div>';
+    }
+    ?>
+
+    <main>
+        <section class="hero-section" aria-label="Hero Area">
+        </section>
+
+        <section class="services-section" aria-label="Our Services">
+            <div class="mobile-services-container" aria-label="Mobile Services Catalog">
+            </div>
+        </section>
+
+        <section class="why-daksh-section" aria-label="Why Choose Daksh">
+        </section>
+
+        <section class="reviews-section" aria-label="Customer Reviews">
+        </section>
+
+        <section class="cta-section" aria-label="Call to Action">
+        </section>
+    </main>
+
+    <footer aria-label="Site Footer">
+    </footer>
+
+</body>
+</html>

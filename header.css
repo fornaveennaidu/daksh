@@ -1,0 +1,438 @@
+/* ==========================================================================
+   Daksh Enterprise Header - Premium Floating Architecture
+   ========================================================================== */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+:root {
+    /* Brand & Functional Colors */
+    --site-bg: #FFFFFF; /* Platform-wide base */
+    --header-bg: #0B1818; /* Strict Header Wrapper Color */
+    --brand-logo: #0B1818; /* High Contrast Dark Logo */
+    --offer-bg: #6ED190;
+    --offer-text: #0B1818;
+    --nav-text: #000000;
+    --hover-bg: #436B56;
+    --hover-text: #FFFFFF;
+    
+    /* Liquid Glass Variables */
+    --glass-bg: rgba(255, 255, 255, 0.80);
+    --glass-border: rgba(255, 255, 255, 0.20);
+    --glass-shadow: 0 16px 40px rgba(0, 0, 0, 0.15);
+    
+    /* Animation Timing */
+    --transition-smooth: all 0.3s ease;
+}
+
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--site-bg);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* --- Strict Offer Bar Sizing --- */
+.daksh-offer-bar {
+    width: 100%;
+    height: 25px;
+    background-color: var(--offer-bg);
+    color: var(--offer-text);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    font-weight: 600;
+    z-index: 1000;
+    position: relative;
+    letter-spacing: 0.2px;
+}
+
+/* --- Floating Main Header --- */
+.daksh-main-header {
+    height: 90px;
+    width: 100%;
+    position: sticky;
+    top: 0;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    background-color: var(--header-bg);
+}
+
+/* --- Glass Navigation Pill --- */
+.nav-pill {
+    width: 92%;
+    max-width: 1400px;
+    margin: 0 auto;
+    height: 70px;
+    background: var(--glass-bg);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid var(--glass-border);
+    border-radius: 24px;
+    box-shadow: var(--glass-shadow);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 24px;
+    box-sizing: border-box;
+    pointer-events: auto;
+    transition: var(--transition-smooth);
+}
+
+/* --- Clean Typography Branding --- */
+.daksh-brand {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-decoration: none;
+    height: 100%;
+    outline: none;
+    border-radius: 8px;
+    transition: var(--transition-smooth);
+    padding: 4px;
+}
+
+.daksh-brand:focus-visible {
+    box-shadow: 0 0 0 3px rgba(67, 107, 86, 0.4);
+}
+
+.brand-name {
+    font-family: 'Poppins', sans-serif;
+    font-size: 27px; /* Desktop Size */
+    font-weight: 700;
+    color: var(--brand-logo);
+    margin: 0;
+    padding: 0;
+    line-height: 1;
+    letter-spacing: -1px;
+    text-shadow: none; 
+    transition: var(--transition-smooth);
+}
+
+.brand-tagline {
+    font-family: 'Poppins', sans-serif;
+    font-size: 8.5px; /* Desktop Size */
+    font-weight: 500;
+    color: var(--brand-logo);
+    line-height: 1;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+    margin-top: 2px;
+    text-shadow: none; 
+    transition: var(--transition-smooth);
+}
+
+/* --- Right Side Container --- */
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+}
+
+/* --- Mobile Wrapper (Invisible on Desktop) --- */
+.mobile-nav-wrapper {
+    display: contents; /* Protects desktop flex layout entirely */
+}
+
+/* --- Navigation Menu --- */
+.nav-menu {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-item { position: relative; }
+
+.nav-link {
+    color: var(--nav-text);
+    font-weight: 600;
+    font-size: 14px;
+    text-decoration: none;
+    padding: 10px 18px;
+    border-radius: 12px;
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: var(--transition-smooth);
+    font-family: inherit;
+}
+
+.nav-link svg { transition: transform 0.3s ease; }
+
+.nav-link:hover, .nav-link:focus-within {
+    background-color: var(--hover-bg);
+    color: var(--hover-text);
+}
+
+.nav-item:hover .nav-link svg { transform: rotate(180deg); }
+
+/* --- Premium Dropdowns --- */
+.dropdown-content {
+    position: absolute;
+    top: calc(100% + 16px);
+    left: 50%;
+    transform: translateX(-50%) translateY(10px);
+    opacity: 0;
+    visibility: hidden;
+    background: var(--glass-bg);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid var(--glass-border);
+    border-radius: 16px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    padding: 12px;
+    min-width: 240px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    transition: var(--transition-smooth);
+}
+
+.nav-item:hover .dropdown-content {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+}
+
+.dropdown-item {
+    padding: 12px 16px;
+    color: var(--nav-text);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    border-radius: 10px;
+    transition: var(--transition-smooth);
+    display: block;
+}
+
+.dropdown-item:hover {
+    background-color: var(--hover-bg);
+    color: var(--hover-text);
+    transform: translateX(4px);
+}
+
+/* --- Signup Button --- */
+.btn-signup {
+    background-color: #0B1818;
+    color: #FFFFFF;
+    border: 1px solid #375947;
+    border-radius: 999px;
+    padding: 10px 24px; /* Matches exact visual size of Nav links */
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition-smooth);
+}
+
+.btn-signup:hover {
+    background-color: #375947;
+    border-color: #375947;
+    color: #FFFFFF;
+}
+
+/* --- Mobile Menu Toggle --- */
+.mobile-toggle {
+    display: none;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    z-index: 10001;
+}
+
+.hamburger, .hamburger::before, .hamburger::after {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background-color: var(--nav-text);
+    transition: var(--transition-smooth);
+    position: relative;
+    border-radius: 2px;
+}
+
+.hamburger::before, .hamburger::after { content: ''; position: absolute; left: 0; }
+.hamburger::before { top: -8px; }
+.hamburger::after { bottom: -8px; }
+
+/* ==========================================================================
+   Responsive Architecture
+   ========================================================================== */
+@media screen and (max-width: 1024px) {
+    .nav-pill { width: 96%; padding: 0 16px; }
+    .nav-right { gap: 16px; }
+    .nav-link { padding: 10px 12px; }
+    
+    /* Tablet Logo Scaling */
+    .brand-name { font-size: 24px; }
+    .brand-tagline { font-size: 8px; }
+}
+
+@media screen and (max-width: 768px) {
+    .mobile-toggle { display: block; z-index: 10001; }
+    
+    /* Mobile Logo Scaling */
+    .brand-name { font-size: 22px; }
+    .brand-tagline { font-size: 7.5px; }
+    
+    /* Dark Overlay Background */
+    .nav-right {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        height: 100vh;
+        width: 100vw;
+        max-width: 100vw;
+        background: #0B1818;
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 0;
+        opacity: 0;
+        pointer-events: none;
+        transition: right 0.3s ease, opacity 0.3s ease;
+        overflow-y: auto;
+        z-index: 10000;
+    }
+
+    .nav-right.active { 
+        right: 0; 
+        opacity: 1; 
+        pointer-events: auto; 
+    }
+
+    /* Floating White Container (Fade + Slide Down Animation) */
+    .mobile-nav-wrapper {
+        display: flex;
+        flex-direction: column;
+        background: #FFFFFF;
+        border-radius: 20px;
+        padding: 16px;
+        width: 90%;
+        max-width: 380px;
+        margin: auto;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        gap: 16px;
+        transform: translateY(-20px);
+        opacity: 0;
+        transition: all 0.3s ease 0.1s;
+    }
+
+    .nav-right.active .mobile-nav-wrapper {
+        transform: translateY(0);
+        opacity: 1;
+    }
+
+    .nav-menu { flex-direction: column; width: 100%; align-items: flex-start; gap: 8px; }
+    .nav-item { width: 100%; }
+    
+    /* Hide Services on Mobile */
+    .nav-item.services-menu { display: none !important; }
+    
+    /* Base Mobile Menu Tab (My Company) */
+    .nav-link { 
+        width: 100%; 
+        justify-content: space-between; 
+        padding: 14px; 
+        background: transparent;
+        color: #000000;
+        font-family: 'Poppins', sans-serif;
+        font-weight: 600;
+        border-radius: 12px;
+        transition: all 0.3s ease;
+    }
+
+    /* Active Tab Design */
+    .nav-item.active-mobile .nav-link {
+        background-color: #0B1818;
+        color: #FFFFFF;
+    }
+    
+    .nav-item.active-mobile .nav-link svg {
+        transform: rotate(180deg);
+        color: #FFFFFF;
+    }
+
+    /* Submenu Container Design */
+    .dropdown-content {
+        position: static;
+        transform: none;
+        opacity: 0;
+        visibility: hidden;
+        display: none;
+        box-shadow: none;
+        border: none;
+        background: transparent; 
+        width: 100%;
+        padding: 8px 0 0 0;
+        margin: 0;
+    }
+
+    /* Smooth Expand/Collapse */
+    .nav-item.active-mobile .dropdown-content {
+        display: flex;
+        opacity: 1;
+        visibility: visible;
+        animation: mobileSubmenuExpand 0.3s ease forwards;
+    }
+
+    @keyframes mobileSubmenuExpand {
+        from { opacity: 0; transform: translateY(-10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Submenu Items */
+    .dropdown-item { 
+        padding: 12px; 
+        color: #000000;
+        background: transparent;
+        border-radius: 10px;
+        margin-bottom: 2px;
+        transition: all 0.3s ease;
+    }
+
+    .dropdown-item:active,
+    .dropdown-item:hover { 
+        transform: none; 
+        background: #0B1818; 
+        color: #FFFFFF; 
+    }
+
+    /* Mobile Signup Button */
+    .btn-signup { 
+        width: 100%; 
+        margin-top: 8px;
+        padding: 14px; /* Matches mobile active tab size */
+        background-color: #0B1818;
+        border: 1px solid #375947;
+        color: #FFFFFF;
+    }
+
+    .btn-signup:hover,
+    .btn-signup:active {
+        background-color: #375947;
+        border-color: #375947;
+        color: #FFFFFF;
+    }
+
+    /* Adjust Hamburger Color against Dark Overlay */
+    .mobile-toggle[aria-expanded="true"] .hamburger::before,
+    .mobile-toggle[aria-expanded="true"] .hamburger::after {
+        background-color: #FFFFFF;
+    }
+}
