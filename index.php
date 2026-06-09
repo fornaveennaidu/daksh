@@ -21,7 +21,7 @@ if (!defined('BASE_PATH')) {
     <title>Daksh - Home Appliance Services</title>
     <meta name="description" content="Daksh Enterprise Home Appliance Service Platform">
     
-    <link rel="icon" type="image/png" href="assets/icons/favicon/favicon.png">
+    <link rel="icon" type="image/png" href="favicon.png">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
